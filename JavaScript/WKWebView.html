@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>OC与JS交互</title>
+        <link rel="stylesheet">
+            <style>
+                p{
+                    font-size:30px;
+                }
+            input{
+                font-size:20px;
+            }
+            </style>
+            </head>
+    <body>
+        
+        <p>objective-c 调用 js</p>
+        
+        <div style="rargin-top: 100px;">
+                       
+                <input type="button" value="Call iOS" onclick="calliOS('call iOS')">
+                    
+                <input type="button" value="Call JS Alert" onclick="jsFunc()">
+                        
+                    <input type="button" value="iOS Call With No JSON" onclick="callJS()">
+                        
+                        <input type="button" value="iOS Call With JSON" onclick="callJSMsg('iOS Call JS')">
+                            
+                            </div>
+             
+          <script>
+            
+            function calliOS(Msg) {
+                
+                                var message = { 'method' : 'hello', 'param1' : Msg };
+                                    
+                window.webkit.messageHandlers.webViewApp.postMessage(message);
+                        }
+        
+        
+        function callJS() {
+            
+                            var message = { 'method' : 'Call JS' };
+            
+            window.webkit.messageHandlers.webViewApp.postMessage(message);
+                        }
+                   
+        function callJSMsg(Msg) {
+            
+            var message = { 'method' : 'Call JS Msg',
+                'param1' : Msg };
+            
+            window.webkit.messageHandlers.webViewApp.postMessage(message);
+                        }
+        
+                    function jsFunc() {
+            
+                            alert('Hello World');
+                        }
+        
+                    function iOSCallJSON() {
+            
+                            alert('callback no msg');
+                        }
+        
+                    function iOSCallJS(Msg) {
+            
+                            alert(Msg);
+                        }
+        
+                    </script>
+    </body>
+    
+</html>
+
+

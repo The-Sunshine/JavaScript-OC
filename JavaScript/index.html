@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>OC与JS交互</title>
+            <link rel="stylesheet">
+                <style>
+                    p{
+                        font-size:30px;
+                    }
+                    input{
+                        font-size:20px;
+                    }
+                </style>
+            </head>
+    <body>
+        
+        <p>JS交互</p>
+        
+        <div style="margin-top: 20px">
+            
+            <input type="button" value="callbackFinish" onclick="iOSDelegate.callbackFinish()">
+
+                <input type="button" value="OC传值JS_Nil_提示成功" onclick="call()">
+
+                    <input type="button" value="OC添加JS提示" onclick="iOSDelegate.OC_ADD_JS_Alert()">
+
+                        <input type="button" value="个人信息" onclick="startFunction(person)">
+                </div>
+        
+        <script>
+            
+            var call = function()
+            {
+                var callInfo = JSON.stringify({"url": "http://www.jianshu.com/users/55c8fdc3c6e7/latest_articles"});
+                iOSDelegate.receiveJSAndCallBackNil(callInfo);
+            }
+        
+        var person = JSON.stringify({"title":"小明","age":"18"});
+        
+        function iOSCallJsAlert()
+        {
+            alert('弹个窗，再调用iOS端的JS_Function_Name');
+            window.webkit.messageHandlers.JS_Function_Name.postMessage({body: 'paramters'});
+        }
+        
+        var Callback = function(str)
+        {
+            alert(str);
+        }
+        
+        var alerCallback = function()
+        {
+            alert('成功');
+        }
+        
+            </script>
+    </body>
+</html>
